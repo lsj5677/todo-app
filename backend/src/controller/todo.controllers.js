@@ -1,4 +1,4 @@
-// business logic
+// business logic for operations
 
 import { Todo } from "../models/todo.model.js";
 
@@ -6,10 +6,13 @@ export const addTodo = async (req, res) => {
   try {
     console.log("Adding Todo");
 
+    // create new data
     const newTodo = new Todo(req.body);
     await newTodo.save();
+    // 201 success to create
     res.status(201).send(newTodo);
   } catch (err) {
+    // 400 bad request
     res.status(400).send(err);
   }
 };
